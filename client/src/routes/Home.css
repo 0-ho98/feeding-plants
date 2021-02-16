@@ -1,0 +1,11 @@
+.firstSection{
+    display: flex;
+    justify-content: center;
+}
+.firstSection .imageContainer{
+    width: 300px;
+}
+.firstSection .imageContainer img{
+    width: 100%;
+    height: 100%;
+}

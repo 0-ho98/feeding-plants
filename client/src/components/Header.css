@@ -1,0 +1,21 @@
+/* 회원 */
+.loginHeader{
+    font-size: 20px;
+}
+/* 비회원 */
+header .nomember{
+    display: block;
+    width: 70%;
+    margin: 0 auto;
+}
+header .nomember .nomemberHeader1{
+    font-size: 50px;
+    margin: 0;
+    color: black;
+}
+header .nomember .nomemberHeader2{
+    font-size: 50px;
+    text-align: right;
+    margin: 0;
+    color: black;
+}

@@ -7,11 +7,11 @@ import Header from "./Header";
 import Navigation from "./Navigation";
 
 const MyRouter = () => {
-    const [isLogin, setIsLogin] = useState(false);
+    const [isLogin, setIsLogin] = useState(true);
     return(
         <BrowserRouter>
             <Header isLogin={isLogin}/>
-            <Navigation/>
+            <Navigation isLogin={isLogin}/>
             <Switch>
                 <Route exact path="/">
                     <Home isLogin={isLogin}/>
