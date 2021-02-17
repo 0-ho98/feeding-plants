@@ -13,7 +13,7 @@ main .firstSection .imageContainer img{
     height: 100%;
 }
 main .nomemberHome{
-    margin: 10%;
+    /* margin: 10%; */
     font-size: 20px;
     line-height: 30px;
 }

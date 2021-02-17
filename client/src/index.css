@@ -16,3 +16,6 @@ footer{
     position: absolute;
     bottom:10vh;
 }
+.initialBlock{
+    margin: 0 10%;
+}
