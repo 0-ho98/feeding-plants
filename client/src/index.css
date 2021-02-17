@@ -10,3 +10,9 @@ a{
 ul{
     list-style: none;
 }
+footer{
+    width: 80%;
+    margin: 0 10%;
+    position: absolute;
+    bottom:10vh;
+}

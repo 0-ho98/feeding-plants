@@ -1,11 +1,19 @@
-.firstSection{
+main section{
+    font-family: Nanum Gothic,sans-serif;
+}
+main .firstSection{
     display: flex;
     justify-content: center;
 }
-.firstSection .imageContainer{
+main .firstSection .imageContainer{
     width: 300px;
 }
-.firstSection .imageContainer img{
+main .firstSection .imageContainer img{
     width: 100%;
     height: 100%;
+}
+main .nomemberHome{
+    margin: 10%;
+    font-size: 20px;
+    line-height: 30px;
 }

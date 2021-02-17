@@ -5,7 +5,9 @@ const App = () => {
     <div className="App">
       <MyRouter/>
       <footer>
-      <span>&copy; {new Date().getFullYear()} 박백김하</span>
+        {/* footer css는 index.css에 있음 */}
+        <hr/>
+      <div>&copy; {new Date().getFullYear()} 박백김하</div>
       </footer>
     </div>
   );

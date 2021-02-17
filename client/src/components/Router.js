@@ -7,7 +7,7 @@ import Header from "./Header";
 import Navigation from "./Navigation";
 
 const MyRouter = () => {
-    const [isLogin, setIsLogin] = useState(true);
+    const [isLogin, setIsLogin] = useState(false);
     return(
         <BrowserRouter>
             <Header isLogin={isLogin}/>

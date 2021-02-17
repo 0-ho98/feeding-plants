@@ -7,6 +7,9 @@ header .nomember{
     display: block;
     width: 70%;
     margin: 0 auto;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    font-family: 'Lexend Mega', sans-serif;
 }
 header .nomember .nomemberHeader1{
     font-size: 50px;
@@ -14,7 +17,7 @@ header .nomember .nomemberHeader1{
     color: black;
 }
 header .nomember .nomemberHeader2{
-    font-size: 50px;
+    font-size: 40px;
     text-align: right;
     margin: 0;
     color: black;
