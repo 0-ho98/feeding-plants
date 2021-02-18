@@ -29,7 +29,7 @@ app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({ extended : true}));
 
-//app.use(routes 사용하는것);
+app.use("/member", require("./routes/memberRouter"));
 
 app.listen(8080, ()=> {
     console.log("listen umm..umm..");
