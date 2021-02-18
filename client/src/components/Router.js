@@ -22,7 +22,7 @@ const MyRouter = () => {
             <Auth />
           </Route>
           <Route exact path="/profile">
-            <Profile />
+            <Profile isLogin={isLogin} />
           </Route>
           <Route exact path="/adding-plants">
             <AddingPlants />
