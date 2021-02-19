@@ -15,8 +15,8 @@
 SoftwareSerial Serial1(6, 7); // RX, TX
 #endif
 
-char ssid[] = "Twim";            // your network SSID (name)
-char pass[] = "12345678";        // your network password
+char ssid[] = "MJ_Wifi_2G";            // 공유기 이름
+char pass[] = "ddingjin1234";        // 패스워드
 int status = WL_IDLE_STATUS;     // the Wifi radio's status
 
 char server[] = "arduino.cc";
@@ -65,6 +65,9 @@ void setup()
     client.println();
   }
 }
+
+ 
+
 
 void loop()
 {

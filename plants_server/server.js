@@ -30,6 +30,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended : true}));
 
 app.use("/member", require("./routes/memberRouter"));
+app.use("/board", require("./routes/boardRouter"));
 
 app.listen(8080, ()=> {
     console.log("listen umm..umm..");
