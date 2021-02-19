@@ -4,6 +4,7 @@ import AddingPlants from "routes/AddingPlants";
 import Auth from "routes/Auth";
 import Home from "routes/Home";
 import Profile from "routes/Profile";
+import Signup from "routes/Signup";
 import Header from "./Header";
 import Navigation from "./Navigation";
 
@@ -20,6 +21,9 @@ const MyRouter = () => {
           </Route>
           <Route exact path="/auth">
             <Auth />
+          </Route>
+          <Route exact path="/signup">
+            <Signup/>
           </Route>
           <Route exact path="/profile">
             <Profile isLogin={isLogin} />

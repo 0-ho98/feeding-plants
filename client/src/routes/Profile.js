@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import {useHistory} from "react-router-dom"
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import Alert from "@material-ui/lab/Alert";
@@ -29,7 +30,17 @@ const useStyles = makeStyles((theme) => ({
 
 const Profile = (props) => {
   const { isLogin } = props;
+  const [buttonValue, setButtonValue] = useState("");
+  const history = useHistory();
   const classes = useStyles();
+
+  useEffect(()=>{
+    if(buttonValue==="LOGIN"){
+      history.push("/auth");
+    }else if(buttonValue==="SIGNUP"){
+      history.push("/signup");
+    }
+  },[buttonValue]);
   return (
     <main>
       {isLogin ? (
@@ -60,11 +71,11 @@ const Profile = (props) => {
               사용자의 정보가 없습니다. 로그인 해주세요
             </Alert>
             <div className={classes.button}>
-              <Button variant="contained" color="primary">
+              <Button variant="contained" color="primary" onClick={()=>{setButtonValue("LOGIN")}}>
                 LOGIN
               </Button>
-              <Button variant="contained" color="secondary">
-                SignUp
+              <Button variant="contained" color="secondary" onClick={()=>{setButtonValue("SIGNUP")}}>
+                SIGNUP
               </Button>
             </div>
           </div>

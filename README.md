@@ -20,3 +20,4 @@
 ### 서버와 클라이언트를 같이 시작할 때(plants_server 폴더 경로에서 명령어 입력하기): `yarn dev`
 ### 클라이언트만 실행할 때(client 폴더 경로에서 명령어 입력하기): `npm start ` 또는 `yarn start`
 ### 깃허브 페이지에 배포하고 싶다면(클라이언트 부분만 해당, client 폴더 경로에서 명령어 입력하기) `yarn run deploy` 명령어 입력하기
+### 현재까지 사용하는 데이터: userId, userPassword, userName, birthday, gender, eMail
