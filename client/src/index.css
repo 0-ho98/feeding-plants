@@ -12,9 +12,9 @@ ul{
 }
 footer{
     width: 80%;
-    margin: 0 10%;
-    position: absolute;
-    bottom:10vh;
+    margin: 15% 10%;
+    /* position: ; */
+    /* bottom:10%; */
 }
 .initialBlock{
     margin: 0 10%;
