@@ -3,13 +3,12 @@ import {useHistory} from "react-router-dom"
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import Alert from "@material-ui/lab/Alert";
+import { Paper } from "@material-ui/core";
 const useStyles = makeStyles((theme) => ({
   container: {
     maxWidth: "500px",
-    border: "3px solid gray",
     margin: theme.spacing(8, 0, 0, 0),
     padding: theme.spacing(5, 1, 5, 1),
-    borderRadius: "5px",
     background: "#fffffe",
     "& > *": {
       margin: theme.spacing(2),
@@ -35,6 +34,7 @@ const Profile = (props) => {
   const classes = useStyles();
 
   useEffect(()=>{
+    document.title= "프로필";
     if(buttonValue==="LOGIN"){
       history.push("/auth");
     }else if(buttonValue==="SIGNUP"){
@@ -43,6 +43,7 @@ const Profile = (props) => {
   },[buttonValue]);
   return (
     <main>
+      <Paper>
       {isLogin ? (
         <div>
           <div className={classes.container}>
@@ -81,6 +82,7 @@ const Profile = (props) => {
           </div>
         </div>
       )}
+      </Paper>
     </main>
   );
 };

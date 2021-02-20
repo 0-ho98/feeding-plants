@@ -9,13 +9,14 @@ import Alert from "@material-ui/lab/Alert";
 import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
 import { Paper } from "@material-ui/core";
+import { TramRounded } from "@material-ui/icons";
+import axios from "axios";
 const useStyles = makeStyles((theme) => ({
   form: {
     display: "flex",
     flexFlow: "column",
     alignItems: "center",
-    height:"700px",
-    // overflow:"scroll",
+    // height: "700px",
     "& > *": {
       margin: theme.spacing(1),
     },
@@ -27,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
     width: "30ch",
     display: "flex",
     justifyContent: "space-evenly",
-    marginTop:"50px",
+    marginTop: "50px",
     "& > *": {
       width: "48%",
     },
@@ -46,8 +47,10 @@ const Signup = () => {
   const [birthday, setBirthday] = useState("");
   const [gender, setGender] = useState("");
   const [confirm, setConfirm] = useState("");
-
+  const [idError, setIdError] = useState(false);
+  const [passwordError, setPasswordError] = useState(false);
   useEffect(() => {
+    document.title = "회원가입";
     if (confirm) {
       history.push("/");
     } else if (confirm === false) {
@@ -55,8 +58,26 @@ const Signup = () => {
     }
   }, [confirm]);
 
-  const handleFormSubmit = () => {
-    console.log("handleFormSubmit");
+  const handleFormSubmit = async (event) => {
+    event.preventDefault();
+    try {
+      if (idError || passwordError || passwordDigitsError) {
+        console.log('아노딤');
+        return false;
+      } else {
+        const data = await axios.post("/Main", {
+          userName,
+          userId,
+          userPassword,
+          eMail,
+          birthday,
+          gender,
+        });
+        const userData = await JSON.parse(data);
+      }
+    } catch (error) {
+      console.log(error.name);
+    }
   };
 
   const onChangeName = (event) => {
@@ -76,18 +97,25 @@ const Signup = () => {
       target: { value },
     } = event;
     setUserPassword(value);
+    if (value.length < 8) {
+      setPasswordDigitsError(true);
+    } else {
+      setPasswordDigitsError(false);
+    }
+    if(passwordCheck !== value){
+      setPasswordError(true);
+    }
   };
   const onChangePasswordCheck = (event) => {
     const {
       target: { value },
     } = event;
     if (userPassword === value) {
-      console.log("맞네");
+      setPasswordError(false);
       setPasswordCheck(value);
     } else {
-      console.log("에이");
+      setPasswordError(true);
       setPasswordCheck(value);
-
     }
   };
   const onChangeEmail = (event) => {
@@ -114,6 +142,7 @@ const Signup = () => {
       <form
         onSubmit={handleFormSubmit}
         className={classes.form}
+        onSubmit={handleFormSubmit}
         autoComplete="off"
       >
         <h1>회원가입</h1>
@@ -167,6 +196,9 @@ const Signup = () => {
           className={classes.input}
           required
         />
+        {passwordError && (
+          <Alert severity="error">비밀번호를 동일하게 입력해주세요.</Alert>
+        )}
         <TextField
           id="outlined-basic5"
           label="이메일"
@@ -200,8 +232,8 @@ const Signup = () => {
             id="demo-simple-select"
             value={gender}
             onChange={onChangeGender}
-          className={classes.input}
-          required
+            className={classes.input}
+            required
           >
             <MenuItem value="남자">남자</MenuItem>
             <MenuItem value="여자">여자</MenuItem>

@@ -1,8 +1,11 @@
-import React from "react";
+import React,{useEffect} from "react";
 import "routes/Home.css"
 const Home = (props) => {
   const { isLogin } = props;
   console.log(isLogin);
+  useEffect(() => {
+    document.title="홈";
+  }, [])
   return (
     <main>
       <section className="firstSection">
