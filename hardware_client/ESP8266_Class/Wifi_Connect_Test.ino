@@ -1,109 +1,59 @@
-/*
- WiFiEsp example: WebClient
+#include <SoftwareSerial.h>
+#define DEBUG true
 
- This sketch connects to google website using an ESP8266 module to
- perform a simple web search.
+String income_wifi = "";
 
- For more details see: http://yaab-arduino.blogspot.com/p/wifiesp-example-client.html
-*/
+SoftwareSerial esp01(2,3); 
 
-#include "WiFiEsp.h"
+ 
 
-// Emulate Serial1 on pins 6/7 if not present
-#ifndef HAVE_HWSERIAL1
-#include "SoftwareSerial.h"
-SoftwareSerial Serial1(6, 7); // RX, TX
-#endif
+void setup() {
+  Serial.begin(9600);
+  esp01.begin(9600); // your esp's baud rate might be different
+  sendData("AT+RST\r\n",2000,DEBUG); // reset module
+  sendData("AT+CWMODE=2\r\n",1000,DEBUG); // configure as access point (working mode: AP+STA)
+  sendData("AT+CWSAP=\"ESP-01\",\"1234test\",11,0\r\n",1000,DEBUG); // join the access point
+  sendData("AT+CIFSR\r\n",1000,DEBUG); // get ip address
+  sendData("AT+CIPMUX=1\r\n",1000,DEBUG); // configure for multiple connections
+  sendData("AT+CIPSERVER=1,80\r\n",1000,DEBUG); // turn on server on port 80
+}
 
-char ssid[] = "MJ_Wifi_2G";            // 공유기 이름
-char pass[] = "ddingjin1234";        // 패스워드
-int status = WL_IDLE_STATUS;     // the Wifi radio's status
+ 
 
-char server[] = "arduino.cc";
+void loop() {
 
-// Initialize the Ethernet client object
-WiFiEspClient client;
-
-void setup()
-{
-  // initialize serial for debugging
-  Serial.begin(115200);
-  // initialize serial for ESP module
-  Serial1.begin(9600);
-  // initialize ESP module
-  WiFi.init(&Serial1);
-
-  // check for the presence of the shield
-  if (WiFi.status() == WL_NO_SHIELD) {
-    Serial.println("WiFi shield not present");
-    // don't continue
-    while (true);
-  }
-
-  // attempt to connect to WiFi network
-  while ( status != WL_CONNECTED) {
-    Serial.print("Attempting to connect to WPA SSID: ");
-    Serial.println(ssid);
-    // Connect to WPA/WPA2 network
-    status = WiFi.begin(ssid, pass);
-  }
-
-  // you're connected now, so print out the data
-  Serial.println("You're connected to the network");
-  
-  printWifiStatus();
-
-  Serial.println();
-  Serial.println("Starting connection to server...");
-  // if you get a connection, report back via serial
-  if (client.connect(server, 80)) {
-    Serial.println("Connected to server");
-    // Make a HTTP request
-    client.println("GET /asciilogo.txt HTTP/1.1");
-    client.println("Host: arduino.cc");
-    client.println("Connection: close");
-    client.println();
+  if (esp01.available()) { 
+    if (esp01.find("+IPD,")) {
+      income_wifi = esp01.readStringUntil('\r');
+      String wifi_temp = income_wifi.substring(income_wifi.indexOf("GET /")+5, income_wifi.indexOf("HTTP/1.1")-1);
+      Serial.println(wifi_temp);
+    }
   }
 }
 
  
 
+String sendData(String command, const int timeout, boolean debug) {
 
-void loop()
-{
-  // if there are incoming bytes available
-  // from the server, read them and print them
-  while (client.available()) {
-    char c = client.read();
-    Serial.write(c);
+  String response = "";
+
+  esp01.print(command); // send the read character to the esp01
+
+  long int time = millis();
+
+  while( (time+timeout) > millis()) {
+
+    while(esp01.available()) {  // The esp has data so display its output to the serial window 
+
+      char c = esp01.read(); // read the next character.
+
+      response+=c;
+
+    }
+
   }
 
-  // if the server's disconnected, stop the client
-  if (!client.connected()) {
-    Serial.println();
-    Serial.println("Disconnecting from server...");
-    client.stop();
+  if(debug) Serial.print(response);
 
-    // do nothing forevermore
-    while (true);
-  }
-}
-
-
-void printWifiStatus()
-{
-  // print the SSID of the network you're attached to
-  Serial.print("SSID: ");
-  Serial.println(WiFi.SSID());
-
-  // print your WiFi shield's IP address
-  IPAddress ip = WiFi.localIP();
-  Serial.print("IP Address: ");
-  Serial.println(ip);
-
-  // print the received signal strength
-  long rssi = WiFi.RSSI();
-  Serial.print("Signal strength (RSSI):");
-  Serial.print(rssi);
-  Serial.println(" dBm");
+  return response;
 }
