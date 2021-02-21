@@ -1,9 +1,12 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import App from 'components/App';
+import React from "react";
+import ReactDOM from "react-dom";
+import App from "components/App";
 import "index.css";
+import { CookiesProvider } from "react-cookie";
 
 ReactDOM.render(
-    <App />,
-  document.getElementById('root')
+  <CookiesProvider>
+    <App />
+  </CookiesProvider>,
+  document.getElementById("root")
 );

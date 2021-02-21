@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
+import { useCookies } from "react-cookie";
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
@@ -32,6 +33,13 @@ const useStyles = makeStyles((theme) => ({
       width: "48%",
     },
   },
+  checkboxContainer:{
+    width: "30ch",
+    "& > *": {
+      fontSize: "12px"
+    },
+    
+  }
 }));
 
 const Auth = () => {
@@ -40,22 +48,24 @@ const Auth = () => {
   const [confirm, setConfirm] = useState("");
   const [userId, setUserId] = useState("");
   const [userPassword, setUserPassword] = useState("");
+  const [isRemember, setIsRemember] = useState(false);
+  const [cookies, setCookie, removeCookie] = useCookies(["rememberId"]);
   const handleFormSubmit = async (event) => {
     event.preventDefault();
     try {
       const data = await axios
-      .post("/login", {
-        userId,
-        userPassword,
-      })
-      .then(() => {
-        setConfirm(false);
-      });
+        .post("/login", {
+          userId,
+          userPassword,
+        })
+        .then(() => {
+          setConfirm(false);
+        });
       const userData = await JSON.parse(data);
-      if(userData.userId !== userId){
-        console.log('없는 아이디 입니다.')
-      }else if(userData.userPassword !== userPassword){
-        console.log('비밀번호가 다릅니다.');
+      if (userData.userId !== userId) {
+        console.log("없는 아이디 입니다.");
+      } else if (userData.userPassword !== userPassword) {
+        console.log("비밀번호가 다릅니다.");
       }
     } catch (error) {
       console.log(error.name);
@@ -74,9 +84,24 @@ const Auth = () => {
     } = event;
     setUserPassword(value);
   };
-
+  const handleCheckbox = (event) => {
+    const {
+      target: { checked },
+    } = event;
+    setIsRemember(checked);
+    if (checked) {
+      setCookie("rememberId", userId, { maxAge: 2000 });
+    } else {
+      removeCookie("rememberId");
+    }
+  };
   useEffect(() => {
-    document.title= "로그인";
+    document.title = "로그인";
+    if (cookies.rememberId !== undefined) {
+      setUserId(cookies.rememberId);
+      setIsRemember(true);
+    }
+    
     if (confirm) {
       history.push("/");
     } else if (confirm === false) {
@@ -107,6 +132,14 @@ const Auth = () => {
           onChange={changePassword}
           required
         />
+        <div className={classes.checkboxContainer}>
+          <input
+            type="checkbox"
+            onChange={handleCheckbox}
+            checked={isRemember}
+          />
+          <span>아이디 저장하기</span>
+        </div>
         <div className={classes.buttons}>
           <Button variant="contained" color="primary" type="submit">
             확인
