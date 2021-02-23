@@ -9,7 +9,7 @@ import Header from "./Header";
 import Navigation from "./Navigation";
 
 const MyRouter = () => {
-  const [isLogin, setIsLogin] = useState(false);
+  const [isLogin, setIsLogin] = useState(true);
   return (
     <BrowserRouter>
       <div className="initialBlock">
