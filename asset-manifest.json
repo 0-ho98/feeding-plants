@@ -1,20 +1,20 @@
 {
   "files": {
     "main.css": "/feeding-plants/static/css/main.09c520f8.chunk.css",
-    "main.js": "/feeding-plants/static/js/main.3e8f1794.chunk.js",
-    "main.js.map": "/feeding-plants/static/js/main.3e8f1794.chunk.js.map",
+    "main.js": "/feeding-plants/static/js/main.17fae327.chunk.js",
+    "main.js.map": "/feeding-plants/static/js/main.17fae327.chunk.js.map",
     "runtime-main.js": "/feeding-plants/static/js/runtime-main.05c7ad2d.js",
     "runtime-main.js.map": "/feeding-plants/static/js/runtime-main.05c7ad2d.js.map",
-    "static/js/2.d407e1f4.chunk.js": "/feeding-plants/static/js/2.d407e1f4.chunk.js",
-    "static/js/2.d407e1f4.chunk.js.map": "/feeding-plants/static/js/2.d407e1f4.chunk.js.map",
+    "static/js/2.6c665759.chunk.js": "/feeding-plants/static/js/2.6c665759.chunk.js",
+    "static/js/2.6c665759.chunk.js.map": "/feeding-plants/static/js/2.6c665759.chunk.js.map",
     "index.html": "/feeding-plants/index.html",
     "static/css/main.09c520f8.chunk.css.map": "/feeding-plants/static/css/main.09c520f8.chunk.css.map",
-    "static/js/2.d407e1f4.chunk.js.LICENSE.txt": "/feeding-plants/static/js/2.d407e1f4.chunk.js.LICENSE.txt"
+    "static/js/2.6c665759.chunk.js.LICENSE.txt": "/feeding-plants/static/js/2.6c665759.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.05c7ad2d.js",
-    "static/js/2.d407e1f4.chunk.js",
+    "static/js/2.6c665759.chunk.js",
     "static/css/main.09c520f8.chunk.css",
-    "static/js/main.3e8f1794.chunk.js"
+    "static/js/main.17fae327.chunk.js"
   ]
 }
