@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Route, BrowserRouter, Switch } from "react-router-dom";
 import AddingPlants from "routes/AddingPlants";
 import Auth from "routes/Auth";
@@ -8,8 +8,8 @@ import Signup from "routes/Signup";
 import Header from "./Header";
 import Navigation from "./Navigation";
 
-const MyRouter = () => {
-  const [isLogin, setIsLogin] = useState(true);
+const MyRouter = (props) => {
+  const {isLogin, setIsLogin} = props;
   return (
     <BrowserRouter>
       <div className="initialBlock">
@@ -29,7 +29,7 @@ const MyRouter = () => {
             <Profile isLogin={isLogin} />
           </Route>
           <Route exact path="/adding-plants">
-            <AddingPlants />
+            <AddingPlants isLogin={isLogin} />
           </Route>
         </Switch>
       </div>
