@@ -1,0 +1,24 @@
+{
+    "user":{
+        "userId":"아이디",
+        "userPassword":"비밀번호",
+        "userName":"이름",
+        "birthday":"생일",
+        "gender":"성별",
+        "eMail":"이메일",
+        "userPhoto":"유저의 사진"
+    },
+    "plant_client":{
+        "plantName":"식물 이름",
+        "plantType":"식물 종류",
+        "waterCycle":"하루 물 주기 횟수",
+        "origin":"원산지",
+        "file":"사진"
+    },
+    "plant_arduino":{
+        "주변 온도":"주변 온도",
+        "주변 습도":"주변 습도",
+        "흙 안의 수분량":"이하 동문",
+        "남은 배터리": "남은 배터리"
+    }
+}

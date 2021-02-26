@@ -91,7 +91,7 @@ const AddingPlants = (props) => {
         <TextField
           className={classes.text}
           id="outlined-basic"
-          label="하루 물 주기 빈도"
+          label="하루 물 주기 횟수"
           variant="outlined"
           value={waterCycle}
           onChange={changeWaterCycle}
