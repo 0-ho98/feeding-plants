@@ -1,7 +1,21 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import MyRouter from "components/Router";
 const App = () => {
   const [isLogin, setIsLogin] = useState(false);
+  const [userInfo, setUserInfo] = useState("");
+  const confirmUser = async() => {
+    try {
+      const response = await fetch('/user');
+      const body = await response.json();
+      setUserInfo(body);
+      setIsLogin(true);
+    } catch (error) {
+      console.log(error.name);
+    }
+  }
+  useEffect(()=>{
+    confirmUser();
+  },[isLogin]);
   return (
     <div className="App">
       <MyRouter isLogin={isLogin} setIsLogin={setIsLogin} />
